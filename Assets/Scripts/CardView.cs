@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class CardView : MonoBehaviour
 {
-    [SerializeField] Text nameText, powerText, costText;
+    [SerializeField] Text nameText, costText;
     [SerializeField] Image iconImage;
 
     public void Show(CardModel cardModel) // cardModelのデータ取得と反映
     {
+
         nameText.text = cardModel.name;
         costText.text = cardModel.cost.ToString();
         iconImage.sprite = cardModel.icon;
