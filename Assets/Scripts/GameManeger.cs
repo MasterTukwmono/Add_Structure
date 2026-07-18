@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManeger : MonoBehaviour
 {
-    [SerializeField] CardContoroll cardPrefab;
-    [SerializeField] Transform PlayerHand;
+    [SerializeField] CardContoroller cardPrefab;
+    [SerializeField] Transform playerHand;
 
     void Start()
     {
@@ -14,8 +14,9 @@ public class GameManeger : MonoBehaviour
 
     void StartGame()
     {
-        CardContoroll card = Instantiate(cardPrefab, PlayerHand);
+        CardContoroller card = Instantiate(cardPrefab, playerHand);
         card.Init(1);
+        card.Init(2);
     }
 
 
