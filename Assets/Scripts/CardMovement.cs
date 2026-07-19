@@ -21,8 +21,32 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData) // カードを離したときに行う処理
     {
+        // 親を設定
         transform.SetParent(cardParent, false);
-        GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
+
+        // Raycast を戻す
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        // 親オブジェクトが存在するかチェック
+        Transform parent = transform.parent;
+        if (parent == null) return;
+
+        // ① 効果発動したい場所かどうか判定
+        if (parent.name == "My_Monster")
+        {
+            // ② CardController を取得
+            CardContoroller controller = GetComponent<CardContoroller>();
+            if (controller != null)
+            {
+                int id = controller.GetCardID();
+
+                // ③ 効果発動スクリプトに渡す
+                CardEffection.Instance.ActivateEffect(id);
+            }
+        }
+
+        // ④ 最後にカードを廃棄（IDに関係なく）
+        Destroy(gameObject);
     }
 }
 

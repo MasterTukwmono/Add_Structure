@@ -17,4 +17,9 @@ public class CardContoroller : MonoBehaviour
         model = new CardModel(cardID); // カードデータを生成
         view.Show(model); // 表示
     }
+
+    public int GetCardID()
+    {
+        return model.cardId;
+    }
 }

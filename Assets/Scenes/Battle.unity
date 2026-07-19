@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 524108536}
   - component: {fileID: 524108538}
   - component: {fileID: 524108539}
+  - component: {fileID: 524108540}
   m_Layer: 5
   m_Name: Paleyer_Hand
   m_TagString: Untagged
@@ -634,6 +635,18 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &524108540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524108534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b14c64bbcd95ca40b637402825ddce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &955113598
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +733,8 @@ GameObject:
   - component: {fileID: 968997508}
   - component: {fileID: 968997510}
   - component: {fileID: 968997509}
+  - component: {fileID: 968997511}
+  - component: {fileID: 968997512}
   m_Layer: 5
   m_Name: My_Monster
   m_TagString: Untagged
@@ -784,6 +799,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968997507}
   m_CullTransparentMesh: 1
+--- !u!114 &968997511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968997507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbae8add9681c2641bb9c9e027cf82b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &968997512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968997507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 8
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 90, y: 120}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1559027286
 GameObject:
   m_ObjectHideFlags: 0

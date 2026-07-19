@@ -50,7 +50,7 @@ public class GameManeger : MonoBehaviour
 
     void SetStartHand() // 手札を3枚配る
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             DrawCard(playerHand);
         }
