@@ -14,9 +14,14 @@ public class GameManeger : MonoBehaviour
 
     void StartGame()
     {
-        CardContoroller card = Instantiate(cardPrefab, playerHand);
-        card.Init(1);
-        card.Init(2);
+        CreateCard(1, playerHand);
+        CreateCard(2, playerHand);
+    }
+
+    void CreateCard(int cardID, Transform place)
+    {
+        CardContoroller card = Instantiate(cardPrefab, place);
+        card.Init(cardID);
     }
 
 
