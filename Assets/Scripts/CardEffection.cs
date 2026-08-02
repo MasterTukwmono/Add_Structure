@@ -5,7 +5,6 @@ using UnityEngine;
 public class CardEffection : MonoBehaviour
 {
 
-    int MyHP = 100;
     double MyAttack = 10;
     double MyDefend = 10;
 

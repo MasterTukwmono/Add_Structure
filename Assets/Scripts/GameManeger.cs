@@ -10,6 +10,7 @@ public class GameManeger : MonoBehaviour
     bool isPlayerTurn = true; //
     List<int> deck = new List<int>() { 1, 2, 1, 1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2 };
 
+
     void Start()
     {
         StartGame();
@@ -50,7 +51,7 @@ public class GameManeger : MonoBehaviour
 
     void SetStartHand() // 手札を3枚配る
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             DrawCard(playerHand);
         }
@@ -62,8 +63,10 @@ public class GameManeger : MonoBehaviour
         {
             PlayerTurn();
         }
-
-
+        if (!isPlayerTurn)
+        {
+            EnemyTurn();
+        }
     }
 
     public void ChangeTurn() // ターンエンドボタンにつける処理
@@ -78,4 +81,11 @@ public class GameManeger : MonoBehaviour
 
         DrawCard(playerHand); // 手札を一枚加える
     }
+
+    void EnemyTurn()
+    {
+        GetComponent<HPManeger>().TakeDamage(10);
+        ChangeTurn();
+    }
+
 }
