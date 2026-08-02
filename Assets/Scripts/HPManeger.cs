@@ -11,13 +11,20 @@ public class HPManeger : MonoBehaviour
     public int currentMyHP;
     public Slider MyHpBer;
 
-    int EnemyHP = 1000;
+    private int EnemyHPMax = 1000;
+    public int currentEnemyHP;
+    public Slider EnemyHPBer;
+
 
     void Start()
     {
         currentMyHP = MyHPMax;
         MyHpBer.maxValue = MyHPMax;
         MyHpBer.value = currentMyHP;
+
+        currentEnemyHP = EnemyHPMax;
+        EnemyHPBer.maxValue = EnemyHPMax;
+        EnemyHPBer.value = currentEnemyHP;
     }
 
     public void TakeDamage(int damage)
@@ -34,6 +41,23 @@ public class HPManeger : MonoBehaviour
         if (currentMyHP == 0)
         {
             Debug.Log("Gameover");
+        }
+    }
+
+    public void AttackDamage(int Attack)
+    {
+        currentEnemyHP -= Attack;
+
+        if (currentEnemyHP < 0)
+        {
+            currentEnemyHP = 0;
+        }
+
+        EnemyHPBer.value = currentEnemyHP;
+
+        if (currentEnemyHP == 0)
+        {
+            Debug.Log("GameClear");
         }
     }
 
