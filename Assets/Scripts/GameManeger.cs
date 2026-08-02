@@ -80,11 +80,12 @@ public class GameManeger : MonoBehaviour
         Debug.Log("Playerのターン");
 
         DrawCard(playerHand); // 手札を一枚加える
+        GetComponent<HPManeger>().AttackDamage();
     }
 
     void EnemyTurn()
     {
-        GetComponent<HPManeger>().TakeDamage(10);
+        GetComponent<HPManeger>().TakeDamage(25);
         ChangeTurn();
     }
 

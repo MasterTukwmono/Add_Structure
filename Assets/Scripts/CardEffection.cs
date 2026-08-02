@@ -5,8 +5,8 @@ using UnityEngine;
 public class CardEffection : MonoBehaviour
 {
 
-    double MyAttack = 10;
-    double MyDefend = 10;
+    public double MyAttack = 10;
+    public double MyDefend = 10;
 
     public static CardEffection Instance;
     private void Awake()

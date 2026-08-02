@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class HPManeger : MonoBehaviour
 {
+    public GameObject me;
+    private CardEffection CardEffections;
 
     private int MyHPMax = 100;
     public int currentMyHP;
@@ -15,9 +17,14 @@ public class HPManeger : MonoBehaviour
     public int currentEnemyHP;
     public Slider EnemyHPBer;
 
+    public int AttackPoint;
+    public int DefencePoint;
+
 
     void Start()
     {
+        CardEffections = me.GetComponent<CardEffection>();
+
         currentMyHP = MyHPMax;
         MyHpBer.maxValue = MyHPMax;
         MyHpBer.value = currentMyHP;
@@ -27,9 +34,13 @@ public class HPManeger : MonoBehaviour
         EnemyHPBer.value = currentEnemyHP;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int Damage)
     {
-        currentMyHP -= damage;
+        DefencePoint = (int)CardEffections.MyDefend;
+        if (DefencePoint < Damage)
+        {
+            currentMyHP = currentMyHP - Damage + DefencePoint;
+        }
 
         if (currentMyHP < 0)
         {
@@ -44,9 +55,10 @@ public class HPManeger : MonoBehaviour
         }
     }
 
-    public void AttackDamage(int Attack)
+    public void AttackDamage()
     {
-        currentEnemyHP -= Attack;
+        AttackPoint = (int)CardEffections.MyAttack;
+        currentEnemyHP -= AttackPoint;
 
         if (currentEnemyHP < 0)
         {
