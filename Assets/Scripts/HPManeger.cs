@@ -21,7 +21,7 @@ public class HPManeger : MonoBehaviour
     public int DefencePoint;
 
 
-    void Start()
+    void Awake()
     {
         CardEffections = me.GetComponent<CardEffection>();
 
@@ -29,7 +29,7 @@ public class HPManeger : MonoBehaviour
         MyHpBer.maxValue = MyHPMax;
         MyHpBer.value = currentMyHP;
 
-        currentEnemyHP = EnemyHPMax;
+        currentEnemyHP = EnemyHPMax + 10;
         EnemyHPBer.maxValue = EnemyHPMax;
         EnemyHPBer.value = currentEnemyHP;
     }
