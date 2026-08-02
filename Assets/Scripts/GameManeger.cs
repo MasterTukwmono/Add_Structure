@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class GameManeger : MonoBehaviour
 {
+    CardEffection CE;
+    public GameObject Me;
     [SerializeField] CardContoroller cardPrefab;
     [SerializeField] Transform playerHand;
 
     bool isPlayerTurn = true; //
     List<int> deck = new List<int>() { 1, 2, 1, 1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2 };
 
+    CardEffection cardeffection;
 
     void Start()
     {
+        CE = Me.GetComponent<CardEffection>();
         StartGame();
     }
 
@@ -78,7 +82,7 @@ public class GameManeger : MonoBehaviour
     void PlayerTurn()
     {
         Debug.Log("Playerのターン");
-
+        CE.Mana = CE.MaxMana;
         DrawCard(playerHand); // 手札を一枚加える
         GetComponent<HPManeger>().AttackDamage();
     }
