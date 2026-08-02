@@ -5,8 +5,11 @@ using UnityEngine;
 public class CardEffection : MonoBehaviour
 {
 
-    public static CardEffection Instance;
+    int MyHP = 100;
+    double MyAttack = 10;
+    double MyDefend = 10;
 
+    public static CardEffection Instance;
     private void Awake()
     {
         Instance = this;
@@ -18,12 +21,12 @@ public class CardEffection : MonoBehaviour
         {
             case 1:
                 Debug.Log("攻撃力上昇I 発動");
-                // PlayerStatus.Instance.Attack += 1;
+                MyAttack *= 1.5;
                 break;
 
             case 2:
                 Debug.Log("防御力上昇I 発動");
-                // PlayerStatus.Instance.Defense += 1;
+                MyDefend *= 1.5;
                 break;
 
             default:
