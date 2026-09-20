@@ -22,4 +22,9 @@ public class CardContoroller : MonoBehaviour
     {
         return model.cardId;
     }
+
+    public int GetCardCost()
+    {
+        return model.cost;
+    }
 }

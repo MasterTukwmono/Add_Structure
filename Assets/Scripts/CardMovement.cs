@@ -7,46 +7,75 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 {
     public Transform cardParent;
 
-    public void OnBeginDrag(PointerEventData eventData) // ドラッグを始めるときに行う処理
+    // ドラッグ開始時の手札
+    private Transform originalParent;
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        cardParent = transform.parent;
+        // 元の手札を記憶
+        originalParent = transform.parent;
+        cardParent = originalParent;
+
+        // ドラッグ中は手札のレイアウトから外す
         transform.SetParent(cardParent.parent, false);
-        GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
+
+        // 他のUIがドラッグ中のカードを検出できるようにする
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
-    public void OnDrag(PointerEventData eventData) // ドラッグした時に起こす処理
+    public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
     }
 
-    public void OnEndDrag(PointerEventData eventData) // カードを離したときに行う処理
+    public void OnEndDrag(PointerEventData eventData)
     {
-        // 親を設定
-        transform.SetParent(cardParent, false);
-
-        // Raycast を戻す
+        // Raycastを戻す
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        // 親オブジェクトが存在するかチェック
-        Transform parent = transform.parent;
-        if (parent == null) return;
-
-        // ① 効果発動したい場所かどうか判定
-        if (parent.name == "My_Monster")
+        // DropPlaceにドロップされていなかった場合
+        // 元の手札に戻す
+        if (cardParent == originalParent)
         {
-            // ② CardController を取得
+            transform.SetParent(originalParent, false);
+            return;
+        }
+
+        // My_Monsterにドロップした場合
+        if (cardParent.name == "My_Monster")
+        {
             CardContoroller controller = GetComponent<CardContoroller>();
+
             if (controller != null)
             {
                 int id = controller.GetCardID();
+                int cost = controller.GetCardCost();
 
-                // ③ 効果発動スクリプトに渡す
-                CardEffection.Instance.ActivateEffect(id);
+                // 効果を発動して、成功したか確認
+                bool success = CardEffection.Instance.ActivateEffect(id, cost);
+
+                if (success)
+                {
+                    // 効果発動成功 → カードを削除
+                    transform.SetParent(cardParent, false);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    // マナ不足などで失敗 → 手札に戻す
+                    transform.SetParent(originalParent, false);
+                }
+            }
+            else
+            {
+                // Controllerがなかった場合も手札に戻す
+                transform.SetParent(originalParent, false);
             }
         }
-
-        // ④ 最後にカードを廃棄（IDに関係なく）
-        Destroy(gameObject);
+        else
+        {
+            // My_Monster以外 → 手札に戻す
+            transform.SetParent(originalParent, false);
+        }
     }
 }
-

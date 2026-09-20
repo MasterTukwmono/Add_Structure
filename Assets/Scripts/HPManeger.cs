@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HPManeger : MonoBehaviour
 {
@@ -52,6 +53,8 @@ public class HPManeger : MonoBehaviour
         if (currentMyHP == 0)
         {
             Debug.Log("Gameover");
+            SceneManager.LoadScene("Gameover");
+
         }
     }
 
@@ -70,6 +73,7 @@ public class HPManeger : MonoBehaviour
         if (currentEnemyHP == 0)
         {
             Debug.Log("GameClear");
+            SceneManager.LoadScene("GameClear");
         }
     }
 

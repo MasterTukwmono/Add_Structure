@@ -10,14 +10,24 @@ public class GameManeger : MonoBehaviour
     [SerializeField] Transform playerHand;
 
     bool isPlayerTurn = true; //
-    List<int> deck = new List<int>() { 1, 2, 1, 1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2 };
+    List<int> deck = new List<int>();
 
     CardEffection cardeffection;
 
     void Start()
     {
         CE = Me.GetComponent<CardEffection>();
+        CreateDeck(); // デッキを作る
         StartGame();
+    }
+
+    void CreateDeck()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            int cardID = Random.Range(1, 6);
+            deck.Add(cardID);
+        }
     }
 
     void StartGame() // 初期値の設定 
@@ -46,10 +56,13 @@ public class GameManeger : MonoBehaviour
         CardContoroller[] playerHandCardList = playerHand.GetComponentsInChildren<CardContoroller>();
 
         if (playerHandCardList.Length < 7)
-        {    // デッキの一番上のカードを抜き取り、手札に加える
+        {
+
+            // デッキの一番上のカードを抜き取り、手札に加える
             int cardID = deck[0];
             deck.RemoveAt(0);
             CreateCard(cardID, hand);
+
         }
     }
 
@@ -84,6 +97,7 @@ public class GameManeger : MonoBehaviour
         Debug.Log("Playerのターン");
         CE.Mana = CE.MaxMana;
         DrawCard(playerHand); // 手札を一枚加える
+        DrawCard(playerHand);
         GetComponent<HPManeger>().AttackDamage();
     }
 
